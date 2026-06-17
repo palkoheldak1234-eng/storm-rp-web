@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storm Bot - Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0a0810;
+            color: #fff;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* BOČNÍ PANEL (SIDEBAR) */
+        .sidebar {
+            width: 260px;
+            background-color: #110e1c;
+            border-right: 1px solid #2a2244;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .brand span { color: #a29bfe; }
+
+        .menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .menu-item {
+            cursor: pointer;
+        }
+
+        .menu-item a {
+            display: block;
+            padding: 12px 15px;
+            color: #b2bec3;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .menu-item.active a, .menu-item a:hover {
+            background-color: #6c5ce7;
+            color: #fff;
+        }
+
+        /* HLAVNÍ OBSAH */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .header-dash {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #2a2244;
+            padding-bottom: 20px;
+        }
+
+        /* TLAČIDLO PRIHLÁSENIA */
+        .btn-login {
+            background-color: #5865F2;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-login:hover { background-color: #4752c4; }
+
+        /* KARTY SO ŠTATISTIKAMI */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: #110e1c;
+            border: 1px solid #2a2244;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: #b2bec3;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #a29bfe;
+        }
+
+        /* KONFIGURAČNÝ PANEL */
+        .config-section {
+            background: #110e1c;
+            border: 1px solid #2a2244;
+            border-radius: 12px;
+            padding: 30px;
+        }<a href="https://discord.com/api/oauth2/authorize?client_id=123456789&redirect_uri=..." target="_blank" class="btn-login" id="login-btn">
+    Přihlásit se přes Discord
+</a>
+
+        .config-section h2 { margin-bottom: 20px; color: #a29bfe; }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #b2bec3;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: #0a0810;
+            border: 1px solid #2a2244;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .btn-save {
+            background: #00b894;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-save:hover { background: #00a383; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="brand">Storm <span>Bot</span></div>
+        <ul class="menu">
+            <li class="menu-item active"><a>Prehled</a></li>
+            <li class="menu-item"><a>Uvítání (Welcome)</a></li>
+            <li class="menu-item"><a>Moderace</a></li>
+            <li class="menu-item"><a>Herní Statistiky</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header-dash">
+            <h1>Panel Administrace</h1>
+            <a href="https://discord.com" target="_blank" class="btn-login" id="login-btn">
+                Přihlásit se přes Discord
+            </a>
+        </div>
+
+        <div id="content-prehled" class="tab-content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Hráči na Discordu</h3>
+                    <div class="value" id="user-count">Načítání...</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Hráči na Serveru</h3>
+                    <div class="value" id="online-players">Načítání...</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Ping Bota</h3>
+                    <div class="value" id="bot-ping">Načítání...</div>
+                </div>
+            </div>
+            
+            <div class="config-section">
+                <h2>📊 Přehled systému</h2>
+                <p style="color: #b2bec3;">Vítejte v hlavním panelu Storm Bota. Všechny systémy běží v pořádku a jsou připraveny k propojení.</p>
+            </div>
+        </div>
+
+        <div id="content-uvitani" class="tab-content" style="display: none;">
+            <div class="config-section">
+                <h2>👋 Nastavení Uvítání (Welcome)</h2>
+                <form>
+                    <div class="form-group">
+                        <label>Uvítací Kanál (ID kanálu na Discordu)</label>
+                        <input type="text" placeholder="123456789012345678">
+                    </div>
+                    <div class="form-group">
+                        <label>Zpráva při příchodu nového hráče</label>
+                        <textarea rows="3">Vítej na serveru Storm RP! Nezapomeň si přečíst pravidla.</textarea>
+                    </div>
+                    <button type="button" class="btn-save">Uložit Uvítání</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="content-moderace" class="tab-content" style="display: none;">
+            <div class="config-section">
+                <h2>🛡️ Nastavení Moderace</h2>
+                <form>
+                    <div class="form-group">
+                        <label>Prefix Bota</label>
+                        <input type="text" value="!" maxlength="3">
+                    </div>
+                    <div class="form-group">
+                        <label>Role pro Admin Tým (Název nebo ID)</label>
+                        <input type="text" placeholder="Admin, Moderator">
+                    </div>
+                    <button type="button" class="btn-save">Uložit Moderaci</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="content-statistiky" class="tab-content" style="display: none;">
+            <div class="config-section">
+                <h2>🎮 Herní Statistiky (In-Game)</h2>
+                <p style="color: #b2bec3; margin-bottom: 20px;">Zde uvidíte živá data přímo ze hry na vašem serveru.</p>
+                <div class="stats-grid">
+                    <div class="stat-card" style="background: #0a0810;">
+                        <h3>Schválené Frakce</h3>
+                        <div class="value" style="color: #00b894;">12</div>
+                    </div>
+                    <div class="stat-card" style="background: #0a0810;">
+                        <h3>Zaregistrovaná Auta</h3>
+                        <div class="value" style="color: #00b894;">348</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 1. Přepínání záložek v menu
+        const menuItems = document.querySelectorAll('.menu-item');
+        const contents = document.querySelectorAll('.tab-content');
+
+        menuItems.forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                menuItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                contents.forEach(c => c.style.display = 'none');
+                contents[index].style.display = 'block';
+            });
+        });
+
+        // 2. Načítání reálných dat z backendu server.js
+        async function nacitatStatistiky() {
+            try {
+                const response = await fetch('/api/stats');
+                const data = await response.json();
+                
+                document.getElementById('user-count').innerText = data.discordMembers;
+                document.getElementById('online-players').innerText = data.playersOnline + " / " + data.maxPlayers;
+                document.getElementById('bot-ping').innerText = data.ping + "ms";
+            } catch (error) {
+                console.log("Čekám na spuštění backendu přes node server.js...");
+            }
+        }
+
+        // Spustit hned při načtení
+        nacitatStatistiky();
+    </script>
+</body>
+</html>
