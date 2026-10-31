@@ -1,417 +1,234 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Storm RP - Oficiální Web</title>
+    <title>helkos-STk | Cenník v Robuxoch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* GLOBÁLNÍ STYLY */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: #0a0810;
-            color: #fff;
-        }
-
-        /* NAVIGAČNÍ MENU */
-        navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(17, 14, 28, 0.95);
-            border-bottom: 1px solid #2a2244;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .logo span { color: #6c5ce7; }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: #b2bec3;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover { color: #6c5ce7; }
-
-        .btn-dash {
-            background-color: #6c5ce7;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        .btn-dash:hover { background-color: #5b4cc4; }
-
-        /* ÚVODNÍ HERO SEKCE */
-        .hero {
-            height: 85vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(rgba(10, 8, 16, 0.75), #0a0810), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920') no-repeat center center/cover;
-            padding: 0 20px;
-            margin-top: 70px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-        .hero h1 span { color: #6c5ce7; }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #b2bec3;
-            max-width: 600px;
-            margin-bottom: 35px;
-        }
-
-        /* SEKCE */
-        section {
-            padding: 100px 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-        }
-        .section-title span { color: #6c5ce7; }
-
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text p {
-            color: #b2bec3;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .feature-box {
-            background-color: #110e1c;
-            border: 1px solid #2a2244;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-        }
-        .feature-box h3 { color: #6c5ce7; margin-bottom: 10px; }
-
-        /* SEKCE: GALERIE */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            height: 220px;
-            border: 1px solid #2a2244;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* ADMIN PANEL GALERIE */
-        .gallery-admin-panel {
-            background: #110e1c;
-            border: 1px solid #2a2244;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 30px;
-            display: none;
-            text-align: center;
-        }
-
-        .gallery-admin-panel input {
-            width: 70%;
-            padding: 12px;
-            background: #0a0810;
-            border: 1px solid #2a2244;
-            border-radius: 6px;
-            color: #fff;
-            margin-right: 10px;
-        }
-
-        .btn-add-photo {
-            background: #00b894;
-            color: #fff;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* SEKCE: ADMIN TÝM (A-TÝM) */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .team-card {
-            background-color: #110e1c;
-            border: 1px solid #2a2244;
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .team-card:hover { transform: translateY(-5px); }
-
-        .avatar {
-            width: 90px;
-            height: 90px;
-            background-color: #2a2244;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-            border: 2px solid #6c5ce7;
-        }
-
-        .team-card h3 { margin-bottom: 5px; }
-        .role { color: #6c5ce7; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
-
-        /* FOOTER */
-        footer {
-            background-color: #110e1c;
-            border-top: 1px solid #2a2244;
-            text-align: center;
-            padding: 30px;
-            color: #b2bec3;
-            margin-top: 50px;
+        .rbx-glow {
+            box-shadow: 0 0 20px -5px rgba(234, 179, 8, 0.3);
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
 
-    <!-- NAVIGAČNÍ MENU -->
-    <navbar>
-        <div class="logo">Storm <span>RP</span></div>
-        <ul class="nav-links">
-            <li><a href="#">Domů</a></li>
-            <li><a href="#o-nas">O nás</a></li>
-            <li><a href="#galerie">Galerie</a></li>
-            <li><a href="#a-tym">A-Tým</a></li>
-        </ul>
-        <a href="/dashboard.html" class="btn-dash">Bot Dashboard</a>
-    </navbar>
-
-    <!-- ÚVODNÍ HERO SEKCE S ROBLOX A DISCORD TLAČÍTKY -->
-    <div class="hero">
-        <h1>Vítejte na <span>Storm RP</span></h1>
-        <p>Zažijte novou úroveň Roleplaye na našem stabilním Roblox serveru. Skvělá komunita, propracované frakce a nekonečné možnosti.</p>
-        
-        <div style="display: flex; gap: 20px; margin-top: 10px; flex-wrap: wrap; justify-content: center;">
-            <a href="https://www.roblox.com/share?v=v2&code=5ihdm3h6sbcyol" target="_blank" rel="noopener noreferrer" style="background-color: #E2231A; color: #fff; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1rem; transition: opacity 0.3s; text-transform: uppercase; box-shadow: 0 4px 15px rgba(226, 35, 26, 0.4);">
-                🎮 Připojit se do hry (Roblox)
-            </a>
-            <a href="https://discord.gg/4ggCqkQj" target="_blank" rel="noopener noreferrer" style="background-color: #5865F2; color: #fff; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1rem; transition: opacity 0.3s; text-transform: uppercase; box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);">
-                💬 Připojit se na Discord
-            </a>
-        </div>
-    </div>
-
-    <!-- SEKCE: O NÁS -->
-    <section id="o-nas">
-        <h2 class="section-title">Kdo <span>jsme?</span></h2>
-        <div class="about-container">
-            <div class="about-text">
-                <p>Storm RP je pokročilý československý roleplay server postavený na pevných základech a férovém přístupu. Naším cílem je přinášet hráčům kvalitní prostředí, kde mohou plně rozvinout příběhy svých postav.</p>
-                <p>Dbáme na skvělou optimalizaci, pravidelné updaty a především na naslouchání naší komunitě. U nás si vybere každý – od legální práce až po propracovaný nelegální život.</p>
-            </div>
-            <div class="about-features">
-                <div class="feature-box">
-                    <h3>Roblox RP</h3>
-                    <p style="color: #b2bec3; font-size: 0.9rem;">Moderní systémy přizpůsobené pro Roblox.</p>
+    <!-- HLAVIČKA -->
+    <header class="border-b border-slate-800/80 bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-tr from-amber-500 to-yellow-300 p-2.5 rounded-xl text-slate-950 font-black shadow-lg shadow-amber-500/20">
+                    <i class="fa-solid fa-cube text-xl"></i>
                 </div>
-                <div class="feature-box">
-                    <h3>Stabilní běh</h3>
-                    <p style="color: #b2bec3; font-size: 0.9rem;">Optimalizované skripty pro plynulou hru.</p>
-                </div>
-                <div class="feature-box">
-                    <h3>Frakce</h3>
-                    <p style="color: #b2bec3; font-size: 0.9rem;">Policie, EMS, Mafie i vlastní podnikání.</p>
-                </div>
-                <div class="feature-box">
-                    <h3>Aktivní Support</h3>
-                    <p style="color: #b2bec3; font-size: 0.9rem;">Rychlé řešení problémů na Discordu.</p>
+                <div class="flex flex-col">
+                    <span class="text-xl font-black tracking-wider uppercase bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
+                        helkos-STk
+                    </span>
+                    <span class="text-[10px] text-slate-400 font-mono tracking-widest uppercase -mt-1">Robux Services</span>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- SEKCE: GALERIE -->
-    <section id="galerie" style="background-color: #0d0a14; max-width: 100%; width: 100%;">
-        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-            <h2 class="section-title">Život ve <span>Městě</span></h2>
-            
-            <!-- Mřížka s fotkami -->
-            <div class="gallery-grid" id="main-gallery">
-                <!-- Fotky se načítají automaticky pomocí JavaScriptu níže -->
-            </div>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
+                <a href="#balicky" class="hover:text-amber-400 transition flex items-center gap-2">
+                    <i class="fa-solid fa-coins text-xs"></i> Balíčky
+                </a>
+                <a href="#kalkulacka" class="hover:text-amber-400 transition flex items-center gap-2">
+                    <i class="fa-solid fa-calculator text-xs"></i> Kalkulačka
+                </a>
+                <a href="#objednavka" class="hover:text-amber-400 transition flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane text-xs"></i> Objednať
+                </a>
+            </nav>
 
-            <!-- Tlačítko pro odemknutí správy -->
-            <button onclick="odemknoutAdmina()" style="margin-top: 40px; background: transparent; border: 1px dashed #2a2244; color: #b2bec3; padding: 10px 20px; border-radius: 6px; cursor: pointer;">
-                ⚙️ Správa galerie (Pouze Majitelé)
-            </button>
-
-            <!-- Skrytý panel pro přidávání fotek -->
-            <div class="gallery-admin-panel" id="admin-panel">
-                <h3 style="margin-bottom: 15px; color: #00b894;">Panel pro přidávání fotek (Aktivní)</h3>
-                <input type="text" id="photo-url-input" placeholder="Vložte URL odkaz na obrázek (např. z Discordu)">
-                <button class="btn-add-photo" onclick="pridatNovouFotku()">Přidat fotku</button>
-                <p style="font-size: 0.8rem; color: #b2bec3; margin-top: 10px;">Tip: Stačí kliknout pravým na obrázek na Discordu a dát 'Kopírovat odkaz na obrázek'.</p>
+            <div>
+                <a href="#objednavka" class="bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-slate-950 text-sm font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-amber-500/20 transition duration-200 border border-yellow-300/30">
+                    <i class="fa-solid fa-cart-shopping mr-1.5"></i> Objednať
+                </a>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- SEKCE: ADMIN TÝM (A-TÝM) -->
-    <section id="a-tym">
-        <h2 class="section-title">Náš <span>A-Tým</span></h2>
-        <div class="team-grid">
-            <div class="team-card">
-                <div class="avatar">⚡</div>
-                <h3>Tade</h3>
-                <div class="role">Hlavní majitel</div>
-            </div>
-            <div class="team-card">
-                <div class="avatar">👑</div>
-                <h3>Helkos (Já)</h3>
-                <div class="role">Zt. Majitele</div>
-            </div>
-            <div class="team-card">
-                <div class="avatar">🛡️</div>
-                <h3>Jirka</h3>
-                <div class="role">SP. majitel</div>
-            </div>
-        </div>
-    </section>
+    <!-- HLAVNÝ OBSAH -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-16">
 
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 Storm RP. Všechna práva vyhrazena. Web pohání Storm Bot.</p>
+        <!-- HERO SEKCIA -->
+        <section class="text-center py-8 max-w-3xl mx-auto">
+            <span class="inline-flex items-center gap-2 bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+                <i class="fa-solid fa-bolt text-yellow-400"></i> Platba v Robuxoch (10 R$ - 250 R$)
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-6 leading-tight">
+                Discord Služby za <br/>
+                <span class="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">ROBUXY</span>
+            </h1>
+            <p class="text-slate-400 text-base sm:text-lg mb-8 leading-relaxed">
+                Objednaj si vývoj Discord bota alebo nastavenie servera od **helkos-STk** a zaplať pohodlne v Robuxoch!
+            </p>
+        </section>
+
+        <!-- PREDCENENÉ BALÍČKY -->
+        <section id="balicky" class="scroll-mt-24">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl font-bold text-white mb-2">Oblúbené Cenníkové Balíčky</h2>
+                <p class="text-xs text-slate-400">Vyber si hotový balíček od 10 R$ do 250 R$</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 10 R$ -->
+                <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between hover:border-amber-500/50 transition">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-mono text-slate-400">STARTER</span>
+                            <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs px-2.5 py-1 rounded-full font-bold">10 R$</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Základné Úpravy</h3>
+                        <p class="text-slate-400 text-xs mb-4">Drobné opravy bota, nastavenie roly alebo oprava kanálov na Discorde.</p>
+                    </div>
+                    <button onclick="selectPackage('Základné Úpravy (10 R$)', 10)" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold py-2.5 rounded-xl transition">Vybrať</button>
+                </div>
+
+                <!-- 50 R$ -->
+                <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between hover:border-amber-500/50 transition">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-mono text-slate-400">STANDARD</span>
+                            <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs px-2.5 py-1 rounded-full font-bold">50 R$</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Mini Bot / Server</h3>
+                        <p class="text-slate-400 text-xs mb-4">Jednoduchý Discord bot (základné príkazy) alebo vytvorenie nového servera.</p>
+                    </div>
+                    <button onclick="selectPackage('Mini Bot / Server (50 R$)', 50)" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold py-2.5 rounded-xl transition">Vybrať</button>
+                </div>
+
+                <!-- 120 R$ -->
+                <div class="bg-slate-900/90 border-2 border-amber-500/80 p-6 rounded-2xl flex flex-col justify-between relative rbx-glow">
+                    <span class="absolute -top-3 right-4 bg-amber-500 text-slate-950 text-[10px] uppercase font-bold px-3 py-0.5 rounded-full">POPULÁRNE</span>
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-mono text-amber-400">ADVANCED</span>
+                            <span class="bg-amber-500 text-slate-950 text-xs px-2.5 py-1 rounded-full font-black">120 R$</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Pokročilý Bot</h3>
+                        <p class="text-slate-400 text-xs mb-4">Custom Bot s interaktívnymi tlačidlami, moderáciou a stavovým panelom (`/panel`).</p>
+                    </div>
+                    <button onclick="selectPackage('Pokročilý Bot (120 R$)', 120)" class="w-full bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 text-xs font-bold py-2.5 rounded-xl transition">Vybrať</button>
+                </div>
+
+                <!-- 250 R$ -->
+                <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between hover:border-amber-500/50 transition">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-mono text-slate-400">PRO MAX</span>
+                            <span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs px-2.5 py-1 rounded-full font-bold">250 R$</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">AI Smart Bot + Server</h3>
+                        <p class="text-slate-400 text-xs mb-4">Plný AI bot (ChatGPT / Gemini), kanálové obmedzenia + kompletný profesionálny server.</p>
+                    </div>
+                    <button onclick="selectPackage('AI Smart Bot + Server (250 R$)', 250)" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold py-2.5 rounded-xl transition">Vybrať</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- KALKULAČKA S POSUVNÍKOM (10 - 250 R$) -->
+        <section id="kalkulacka" class="bg-slate-900 border border-slate-800 p-8 rounded-2xl max-w-2xl mx-auto scroll-mt-24">
+            <h2 class="text-xl font-bold text-center mb-6 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-sliders text-amber-400"></i> Nastav si vlastný rozpočet
+            </h2>
+            <div class="space-y-6">
+                <div>
+                    <div class="flex justify-between text-sm font-semibold mb-2">
+                        <span class="text-slate-400">Počet Robuxov:</span>
+                        <span id="robuxVal" class="text-amber-400 font-black text-lg">100 R$</span>
+                    </div>
+                    <input type="range" id="robuxSlider" min="10" max="250" step="5" value="100" class="w-full h-2 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                    <div class="flex justify-between text-[10px] text-slate-500 mt-1 font-mono">
+                        <span>10 R$</span>
+                        <span>130 R$</span>
+                        <span>250 R$</span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs space-y-2">
+                    <p class="text-slate-300 font-semibold">Čo za túto sumu dostaneš?</p>
+                    <p id="calcEst" class="text-slate-400">Stredne pokročilý Discord bot alebo kompletné nastavenie rolí a kategórií na serveri.</p>
+                </div>
+
+                <button onclick="applyCustomRobux()" class="w-full bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/30 font-bold py-3 rounded-xl text-xs transition">
+                    Použiť túto sumu do objednávky
+                </button>
+            </div>
+        </section>
+
+        <!-- FORMULÁR -->
+        <section id="objednavka" class="max-w-xl mx-auto scroll-mt-24">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold">Objednávkový Formulár</h2>
+                <p class="text-xs text-slate-400">Vyplň údaje a správa s Robux dopytom mi dorazí priamo na e-mail.</p>
+            </div>
+
+            <form action="https://formsubmit.co/helkos.stk@gmail.com" method="POST" class="bg-slate-900 border border-slate-800 p-8 rounded-2xl space-y-4 shadow-xl">
+                <input type="hidden" name="_subject" value="Nový dopyt na helkos-STk (Robuxy)!">
+                <input type="hidden" name="_captcha" value="false">
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Tvoj Discord / Roblox Nick</label>
+                    <input type="text" name="Kontakt" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 text-white" placeholder="napr. helkos#1234 / RobloxNick">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Vybraná suma v Robuxoch</label>
+                    <input type="text" id="selectedBalicek" name="Robux_Suma" readonly class="w-full bg-slate-950 border border-slate-800 text-amber-400 font-bold rounded-xl px-4 py-3 text-sm focus:outline-none" value="100 R$">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Popis požiadavky</label>
+                    <textarea name="Popis" rows="4" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-amber-500 text-white" placeholder="Napíš čo presne potrebuješ spraviť..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg shadow-amber-500/20 transition border border-yellow-300/30">
+                    <i class="fa-solid fa-paper-plane mr-2"></i> Odoslať Objednávku
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- PÄTIČKA -->
+    <footer class="border-t border-slate-800/80 bg-slate-900/40 py-6 text-center text-xs text-slate-500">
+        <p>&copy; 2026 <span class="text-amber-400 font-semibold">helkos-STk Development</span>. Všetky práva vyhradené.</p>
     </footer>
 
-    <!-- SCRIPT PRO DYNAMICKOU GALERII -->
     <script>
-        // Výchozí fotky, které tam budou vždy
-        const vychoziFotky = [
-            "https://images.unsplash.com/photo-1611078489935-0cb964de46d6?q=80&w=600",
-            "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=600",
-            "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600"
-        ];
+        const slider = document.getElementById('robuxSlider');
+        const valDisplay = document.getElementById('robuxVal');
+        const calcEst = document.getElementById('calcEst');
+        const selectedInput = document.getElementById('selectedBalicek');
 
-        // TAJNÉ HESLO PRO TADEHO (Můžete si ho změnit)
-        const TAJNE_HESLO = "stormadmin123";
-
-        // Funkce pro zobrazení všech fotek
-        function nactiGalerii() {
-            const grid = document.getElementById('main-gallery');
-            grid.innerHTML = ""; // Vyčistit
-
-            // Načíst přidané fotky z paměti prohlížeče
-            let ulozeneFotky = JSON.parse(localStorage.getItem('storm_galerie')) || [];
-            let vsechnyFotky = [...vychoziFotky, ...ulozeneFotky];
-
-            vsechnyFotky.forEach(url => {
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                item.innerHTML = `<img src="${url}" alt="Obrázek ze serveru">`;
-                grid.appendChild(item);
-            });
-        }
-
-        // Odemknutí panelu po zadání hesla
-        function odemknoutAdmina() {
-            const heslo = prompt("Zadej tajné heslo pro správu galerie:");
-            if (heslo === TAJNE_HESLO) {
-                document.getElementById('admin-panel').style.display = 'block';
-                alert("Přístup povolen! Panel se otevřel pod galerií.");
+        slider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            valDisplay.textContent = val + ' R$';
+            
+            if(val < 30) {
+                calcEst.textContent = "Drobné opravy bota, úprava kanálov alebo nastavenie jednoduchých rolí.";
+            } else if(val < 100) {
+                calcEst.textContent = "Základný Discord bot (základné príkazy) alebo nový Discord server.";
+            } else if(val < 180) {
+                calcEst.textContent = "Pokročilý custom bot s tlačidlami, moderáciou a stavovým panelom (/panel).";
             } else {
-                alert("Nesprávné heslo! Přístup zamítnut.");
+                calcEst.textContent = "Kompletný AI Smart Bot (ChatGPT/Gemini) + plne nastavený komunitný server.";
             }
+        });
+
+        function selectPackage(title, amount) {
+            selectedInput.value = amount + ' R$ (' + title + ')';
+            document.getElementById('objednavka').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Přidání nové fotky
-        function pridatNovouFotku() {
-            const input = document.getElementById('photo-url-input');
-            const url = input.value.trim();
-
-            if (url === "") {
-                alert("Prosím, vlož platný odkaz na fotku.");
-                return;
-            }
-
-            let ulozeneFotky = JSON.parse(localStorage.getItem('storm_galerie')) || [];
-            ulozeneFotky.push(url);
-            localStorage.setItem('storm_galerie', JSON.stringify(ulozeneFotky));
-
-            input.value = ""; // vymazat políčko
-            nactiGalerii(); // překreslit galerii
-            alert("Fotka byla úspěšně přidána na web!");
+        function applyCustomRobux() {
+            selectedInput.value = slider.value + ' R$ (Custom rozpočet)';
+            document.getElementById('objednavka').scrollIntoView({ behavior: 'smooth' });
         }
-
-        // Spustit načtení při otevření webu
-        nactiGalerii();
     </script>
 </body>
-</html>
+                                                                                                                                                        </html>
+                        
