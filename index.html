@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>helkos-STk | Halloween Edition</title>
+    <title>helkos_STk | Halloween Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -13,12 +13,17 @@
         body {
             background-color: #090508;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(124, 45, 18, 0.2) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(88, 28, 135, 0.2) 0%, transparent 40%);
+                radial-gradient(circle at 10% 20%, rgba(124, 45, 18, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(88, 28, 135, 0.25) 0%, transparent 40%);
         }
     </style>
 </head>
 <body class="text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-orange-500 selection:text-black">
+
+    <!-- HALLOWEEN / VIANOČNÝ PREVÁDZKOVÝ PÁS -->
+    <div class="bg-gradient-to-r from-orange-600 via-amber-600 to-purple-800 text-slate-950 text-[11px] font-extrabold text-center py-1.5 px-4 uppercase tracking-widest flex items-center justify-center gap-2 shadow-md">
+        <i class="fa-solid fa-ghost text-slate-950"></i> Halloweensky špeciál aktívny! (Vianočná tématika príde 1. decembra) 🎄👻
+    </div>
 
     <!-- HLAVIČKA -->
     <header class="border-b border-orange-900/40 bg-slate-950/90 backdrop-blur-md sticky top-0 z-50">
@@ -35,283 +40,153 @@
                 </div>
             </a>
 
-            <!-- NAVIGACE -->
+            <!-- DESKTOP NAVIGÁCIA -->
             <nav class="hidden lg:flex space-x-6 text-sm font-medium text-slate-300">
                 <a href="#domov" class="hover:text-orange-400 transition flex items-center gap-1.5"><i class="fa-solid fa-house text-xs"></i> Domov</a>
-                <a href="#cennik" class="hover:text-orange-400 transition flex items-center gap-1.5"><i class="fa-solid fa-tags text-xs"></i> Čistý cenník</a>
-                <a href="#boty" class="hover:text-orange-400 transition flex items-center gap-1.5"><i class="fa-solid fa-robot text-xs"></i> Boti s výhodami</a>
-                <a href="#servery" class="hover:text-orange-400 transition flex items-center gap-1.5"><i class="fa-solid fa-server text-xs"></i> Servery</a>
+                <a href="#servery" class="hover:text-orange-400 transition flex items-center gap-1.5"><i class="fa-solid fa-server text-xs"></i> Balíčky Serverov</a>
+                <a href="#cennik" class="hover:text-orange-400 transition flex items-center gap-1.5"><i class="fa-solid fa-robot text-xs"></i> Cenník Botov</a>
+                <a href="#boty" class="hover:text-orange-400 transition flex items-center gap-1.5"><i class="fa-solid fa-wand-magic-sparkles text-xs"></i> Výhody</a>
                 <a href="#recenzie" class="hover:text-orange-400 transition flex items-center gap-1.5"><i class="fa-solid fa-star text-xs"></i> Recenzie</a>
             </nav>
 
-            <div>
+            <div class="hidden lg:block">
                 <a href="#kontakt" class="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-slate-950 text-sm font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-orange-500/20 transition duration-200 border border-orange-400/30 flex items-center gap-2">
                     <i class="fa-solid fa-cart-shopping"></i> Objednať
                 </a>
             </div>
+
+            <!-- MOBILNÉ TLAČIDLO S 3 ČIARKAMI -->
+            <button onclick="toggleMobileMenu()" class="lg:hidden text-orange-400 text-2xl p-2 focus:outline-none cursor-pointer">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- ROZBALOVACIE MOBILNÉ MENU (3 ČIARKY) -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-slate-950 border-b border-orange-950 px-6 py-4 space-y-3 text-sm font-medium">
+            <a href="#domov" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-orange-400 py-1">Domov</a>
+            <a href="#servery" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-orange-400 py-1">Balíčky Serverov</a>
+            <a href="#cennik" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-orange-400 py-1">Cenník Botov</a>
+            <a href="#boty" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-orange-400 py-1">Výhody</a>
+            <a href="#recenzie" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-orange-400 py-1">Recenzie</a>
+            <a href="#kontakt" onclick="toggleMobileMenu()" class="block text-center bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 font-bold py-2.5 rounded-xl mt-2">Objednať</a>
         </div>
     </header>
 
-    <!-- HLAVNÍ OBSAH -->
+    <!-- HLAVNÝ OBSAH -->
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-20">
 
         <!-- 1. DOMOV -->
         <section id="domov" class="py-12 flex flex-col md:flex-row items-center justify-between gap-12 scroll-mt-28">
             <div class="max-w-2xl text-center md:text-left space-y-6">
                 <span class="inline-flex items-center gap-2 bg-orange-500/10 text-orange-400 border border-orange-500/20 text-xs font-semibold px-3.5 py-1.5 rounded-full">
-                    <i class="fa-solid fa-spider text-orange-500"></i> Robux Cenník (10 R$ - 250 R$)
+                    <i class="fa-solid fa-spider text-orange-500"></i> Halloweenská edícia • Robux Cenník (10 R$ - 250 R$)
                 </span>
                 <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight">
                     Discord služby od <br/>
                     <span class="bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 bg-clip-text text-transparent">helkos-STk</span>
                 </h1>
                 <p class="text-slate-400 text-base sm:text-lg leading-relaxed">
-                    Vybav si vlastného Discord bota alebo kompletný nastavený server za Robuxy!
+                    Vybav si vlastného Discord bota alebo kompletný nastavený komunitný server za Robuxy! Noví zákazníci majú <strong class="text-orange-400">50 % zľavu</strong>.
                 </p>
                 <div class="flex flex-wrap gap-4 justify-center md:justify-start pt-2">
-                    <a href="#cennik" class="bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 font-bold px-8 py-3.5 rounded-xl shadow-lg transition">Prezrieť cenník</a>
-                    <a href="#kontakt" class="bg-slate-900 hover:bg-slate-800 border border-orange-500/30 text-slate-300 font-semibold px-8 py-3.5 rounded-xl transition">Objednať hneď</a>
+                    <a href="#servery" class="bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 font-bold px-8 py-3.5 rounded-xl shadow-lg transition">Balíčky serverov</a>
+                    <a href="#cennik" class="bg-slate-900 hover:bg-slate-800 border border-orange-500/30 text-slate-300 font-semibold px-8 py-3.5 rounded-xl transition">Cenník botov</a>
                 </div>
             </div>
         </section>
 
         <div class="w-full h-px bg-gradient-to-r from-transparent via-orange-600/50 to-transparent"></div>
 
-        <!-- 2. CENNÍK -->
+        <!-- 2. BALÍČKY DISCORD SERVEROV -->
+        <section id="servery" class="py-8 space-y-12 scroll-mt-28">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <h2 class="text-3xl font-extrabold text-orange-400">🏰 Balíčky Discord Serverov</h2>
+                <p class="text-slate-400 text-sm">Kompletné postavenie a nastavenie tvojho servera na mieru v Robuxoch</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                
+                <!-- BASIC SERVER -->
+                <div class="bg-slate-900/70 border border-orange-950 p-8 rounded-3xl flex flex-col justify-between hover:border-orange-500/40 transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-2xl font-black text-white">Basic</h3>
+                            <span class="bg-orange-500/10 text-orange-400 border border-orange-500/30 text-sm font-black px-3.5 py-1 rounded-full">50 R$</span>
+                        </div>
+                        <p class="text-slate-400 text-xs mb-6">Ideálny štartovací balíček pre menšiu komunitu alebo skupinu kamarátov.</p>
+                        
+                        <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-orange-400 mt-1"></i> <span>Kompletná základná štruktúra servera</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-orange-400 mt-1"></i> <span>Max. <strong>10 rolí</strong> + základné práva</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-orange-400 mt-1"></i> <span>Max. <strong>15 kanálov</strong></span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-orange-400 mt-1"></i> <span>Uvítací systém & levely</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-orange-400 mt-1"></i> <span>Ticket systém & pravidlá</span></li>
+                        </ul>
+                    </div>
+
+                    <a href="#kontakt" onclick="selectPkg('Server Balíček: BASIC (50 R$)')" class="w-full text-center bg-slate-800 hover:bg-orange-600 hover:text-slate-950 text-slate-200 text-sm font-bold py-3.5 rounded-xl border border-orange-900/50 transition block">
+                        Objednať Basic
+                    </a>
+                </div>
+
+                <!-- PRO SERVER -->
+                <div class="bg-slate-900/90 border-2 border-orange-500 p-8 rounded-3xl flex flex-col justify-between relative halloween-glow">
+                    <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-500 to-amber-400 text-slate-950 text-xs uppercase font-black px-4 py-1 rounded-full shadow-lg">
+                        NAJPREDÁVANEJŠÍ
+                    </span>
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-2xl font-black text-orange-400">Pro</h3>
+                            <span class="bg-orange-500 text-slate-950 text-sm font-black px-3.5 py-1 rounded-full">120 R$</span>
+                        </div>
+                        <p class="text-slate-300 text-xs mb-6">Rozšírený komunitný server s pokročilými systémami a ochranou.</p>
+                        
+                        <ul class="space-y-3 text-sm text-slate-200 mb-8">
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-orange-400 mt-1"></i> <span><strong>Všetko z Basic balíčka</strong></span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-orange-400 mt-1"></i> <span>Max. <strong>25 rolí</strong> (farebné a reakčné)</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-orange-400 mt-1"></i> <span>Max. <strong>30 kanálov</strong></span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-orange-400 mt-1"></i> <span>Logy, stats kanály & anti-spam</span></li>
+                        </ul>
+                    </div>
+
+                    <a href="#kontakt" onclick="selectPkg('Server Balíček: PRO (120 R$)')" class="w-full text-center bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-slate-950 text-sm font-black py-3.5 rounded-xl shadow-lg transition block">
+                        Objednať Pro
+                    </a>
+                </div>
+
+                <!-- VIP SERVER -->
+                <div class="bg-slate-900/70 border border-purple-500/40 p-8 rounded-3xl flex flex-col justify-between hover:border-purple-400 transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-2xl font-black text-purple-400">VIP</h3>
+                            <span class="bg-purple-500/20 text-purple-300 border border-purple-500/40 text-sm font-black px-3.5 py-1 rounded-full">250 R$</span>
+                        </div>
+                        <p class="text-slate-400 text-xs mb-6">Maximálna výbava bez obmedzení, vlastný bot a prednostná podpora.</p>
+                        
+                        <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-crown text-purple-400 mt-1"></i> <span><strong>Všetko z Pro balíčka</strong></span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-purple-400 mt-1"></i> <span><strong>Neobmedzený</strong> počet rolí a kanálov</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-purple-400 mt-1"></i> <span>Full custom dizajn & automod</span></li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-purple-400 mt-1"></i> <span><strong>Prioritná podpora</strong> (7 dní zdarma)</span></li>
+                        </ul>
+                    </div>
+
+                    <a href="#kontakt" onclick="selectPkg('Server Balíček: VIP (250 R$)')" class="w-full text-center bg-purple-600/30 hover:bg-purple-600 text-purple-200 hover:text-white text-sm font-bold py-3.5 rounded-xl border border-purple-500/40 transition block">
+                        Objednať VIP
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="w-full h-px bg-gradient-to-r from-transparent via-orange-600/50 to-transparent"></div>
+
+        <!-- 3. CENNÍK BOTOV -->
         <section id="cennik" class="py-8 space-y-12 scroll-mt-28">
             <div class="text-center max-w-3xl mx-auto space-y-3">
-                <h2 class="text-3xl font-extrabold text-orange-400">🎃 Čistý cenník v Robuxoch</h2>
-                <p class="text-slate-400 text-sm">Vyber si balíček od 10 R$ do 250 R$</p>
+                <h2 class="text-3xl font-extrabold text-orange-400">🤖 Samostatné Discord Boty</h2>
+                <p class="text-slate-400 text-sm">Vyber si bota pre svoj existujúci server:</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- 10 R$ -->
-                <div class="bg-slate-900/60 border border-orange-950 p-6 rounded-2xl flex flex-col justify-between">
-                    <div>
-                        <span class="text-xs font-mono text-orange-400 font-bold">10 R$</span>
-                        <h3 class="text-lg font-bold my-2">Základné Úpravy</h3>
-                        <p class="text-slate-400 text-xs mb-4">Opravné drobnosti na botovi alebo úprava roly na Discorde.</p>
-                    </div>
-                    <a href="#kontakt" onclick="selectPkg('10 R$ (Základné Úpravy)')" class="w-full text-center bg-slate-800 hover:bg-orange-950 text-slate-200 text-xs font-bold py-3 rounded-xl border border-orange-900/40 block">Objednať za 10 R$</a>
-                </div>
-
-                <!-- 50 R$ -->
-                <div class="bg-slate-900/60 border border-orange-950 p-6 rounded-2xl flex flex-col justify-between">
-                    <div>
-                        <span class="text-xs font-mono text-orange-400 font-bold">50 R$</span>
-                        <h3 class="text-lg font-bold my-2">Mini Bot / Server</h3>
-                        <p class="text-slate-400 text-xs mb-4">Základný bot s jednoduchými príkazmi alebo vytvorenie servera.</p>
-                    </div>
-                    <a href="#kontakt" onclick="selectPkg('50 R$ (Mini Bot / Server)')" class="w-full text-center bg-slate-800 hover:bg-orange-950 text-slate-200 text-xs font-bold py-3 rounded-xl border border-orange-900/40 block">Objednať za 50 R$</a>
-                </div>
-
-                <!-- 120 R$ -->
-                <div class="bg-slate-900/90 border-2 border-orange-500/80 p-6 rounded-2xl flex flex-col justify-between halloween-glow relative">
-                    <span class="absolute -top-3 right-4 bg-orange-500 text-slate-950 text-[10px] uppercase font-bold px-3 py-0.5 rounded-full">POPULÁRNE</span>
-                    <div>
-                        <span class="text-xs font-mono text-orange-300 font-bold">120 R$</span>
-                        <h3 class="text-lg font-bold my-2">Pokročilý Bot</h3>
-                        <p class="text-slate-400 text-xs mb-4">Custom Bot s tlačidlami, moderáciou a stavovým panelom (`/panel`).</p>
-                    </div>
-                    <a href="#kontakt" onclick="selectPkg('120 R$ (Pokročilý Bot)')" class="w-full text-center bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 text-xs font-bold py-3 rounded-xl block">Objednať za 120 R$</a>
-                </div>
-
-                <!-- 250 R$ -->
-                <div class="bg-slate-900/60 border border-orange-950 p-6 rounded-2xl flex flex-col justify-between">
-                    <div>
-                        <span class="text-xs font-mono text-orange-400 font-bold">250 R$</span>
-                        <h3 class="text-lg font-bold my-2">AI Smart Bot + Server</h3>
-                        <p class="text-slate-400 text-xs mb-4">Plný AI bot (ChatGPT / Gemini) a kompletne nastavený komunitný server.</p>
-                    </div>
-                    <a href="#kontakt" onclick="selectPkg('250 R$ (AI Smart Bot + Server)')" class="w-full text-center bg-slate-800 hover:bg-orange-950 text-slate-200 text-xs font-bold py-3 rounded-xl border border-orange-900/40 block">Objednať za 250 R$</a>
-                </div>
-            </div>
-        </section>
-
-        <div class="w-full h-px bg-gradient-to-r from-transparent via-orange-600/50 to-transparent"></div>
-
-        <!-- 3. BOTI S VÝHODAMI -->
-        <section id="boty" class="py-8 space-y-10 scroll-mt-28">
-            <div class="text-center max-w-3xl mx-auto space-y-3">
-                <h2 class="text-3xl font-extrabold text-orange-400">Boti s výhodami</h2>
-            </div>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-slate-900/60 border border-orange-950 p-8 rounded-2xl space-y-4">
-                    <h3 class="text-lg font-bold text-orange-400">Magické AI Asistencie</h3>
-                    <p class="text-slate-400 text-xs">ChatGPT/Gemini modely na mieru pre tvoj server.</p>
-                </div>
-                <div class="bg-slate-900/60 border border-orange-950 p-8 rounded-2xl space-y-4">
-                    <h3 class="text-lg font-bold text-orange-400">Rýchly Python Kód</h3>
-                    <p class="text-slate-400 text-xs">Stabilný kód písaný v discord.py s vysokým výkonom.</p>
-                </div>
-                <div class="bg-slate-900/60 border border-orange-950 p-8 rounded-2xl space-y-4">
-                    <h3 class="text-lg font-bold text-orange-400">Pevná Ochrana</h3>
-                    <p class="text-slate-400 text-xs">Anti-Raid ochrana a automatická moderácia.</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="w-full h-px bg-gradient-to-r from-transparent via-orange-600/50 to-transparent"></div>
-
-        <!-- 4. SERVERY -->
-        <section id="servery" class="py-8 max-w-4xl mx-auto space-y-8 scroll-mt-28">
-            <div class="text-center space-y-3">
-                <h2 class="text-3xl font-extrabold text-orange-400">Discord Servery & Setup</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-slate-900/60 border border-orange-950 p-8 rounded-2xl space-y-4">
-                    <h3 class="text-lg font-bold text-orange-400">Tematický dizajn</h3>
-                    <p class="text-slate-400 text-xs">Prehľadné kategórie, roly a nastavenia kanálov.</p>
-                </div>
-                <div class="bg-slate-900/60 border border-orange-950 p-8 rounded-2xl space-y-4">
-                    <h3 class="text-lg font-bold text-amber-400">Pokročilé systémy</h3>
-                    <p class="text-slate-400 text-xs">Ticket systémy a verifikácie nováčikov.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. RECENZIE -->
-        <section id="recenzie" class="py-8 max-w-4xl mx-auto space-y-8 scroll-mt-28">
-            <div class="text-center space-y-3">
-                <h2 class="text-3xl font-extrabold text-orange-400">Recenzie zákazníkov</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-slate-900/60 border border-orange-950 p-6 rounded-2xl space-y-3">
-                    <p class="text-slate-300 text-xs italic">"Skvelý prístup, bot funguje perfektne!"</p>
-                    <p class="text-orange-500/70 text-[10px] font-mono">— Martin</p>
-                </div>
-                <div class="bg-slate-900/60 border border-orange-950 p-6 rounded-2xl space-y-3">
-                    <p class="text-slate-300 text-xs italic">"Rýchle dodanie a super komunikácia."</p>
-                    <p class="text-orange-500/70 text-[10px] font-mono">— Filip</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="w-full h-px bg-gradient-to-r from-transparent via-orange-600/50 to-transparent"></div>
-
-        <!-- 6. OBJEDNÁVKOVÝ FORMULÁR -->
-<section id="kontakt" class="py-8 max-w-xl mx-auto scroll-mt-28">
-    <div class="text-center mb-6 space-y-2">
-        <h2 class="text-3xl font-extrabold text-orange-400">Halloweenská objednávka</h2>
-        <p class="text-slate-400 text-xs">Po kliknutí sa ti otvorí e-mail s predpísanou správou pre <span class="text-orange-400 font-semibold">helkos.sk@gmail.com</span>.</p>
-    </div>
-
-    <!-- FORMULÁR S PRIAMYM OTVORENÍM MAILU -->
-    <form onsubmit="sendMailDirect(event)" class="bg-slate-900 border border-orange-950 p-8 rounded-2xl space-y-4 shadow-xl">
-        <div>
-            <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Tvoj Discord / Roblox Nick</label>
-            <input type="text" id="userNick" required class="w-full bg-slate-950 border border-orange-950 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-orange-500 text-white" placeholder="napr. helkos#1234">
-        </div>
-
-        <div>
-            <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Zvolená služba / Robux suma</label>
-            <input type="text" id="selectedBalicek" readonly class="w-full bg-slate-950 border border-orange-950 text-orange-400 font-bold rounded-xl px-4 py-3 text-sm focus:outline-none" value="10 R$ (Základné Úpravy)">
-        </div>
-
-        <div>
-            <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Detailný popis požiadavky</label>
-            <textarea id="userDesc" rows="4" required class="w-full bg-slate-950 border border-orange-950 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-orange-500 text-white" placeholder="Napíš čo presne potrebuješ spraviť..."></textarea>
-        </div>
-
-        <!-- TLAČIDLO -->
-        <button type="submit" class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg transition cursor-pointer flex items-center justify-center gap-2">
-            <i class="fa-solid fa-paper-plane"></i> Odoslať objednávku cez e-mail
-        </button>
-    </form>
-
-    <div class="mt-6 text-center text-xs text-slate-400 space-y-2">
-        <p>Alebo mi napíš priamo:</p>
-        <a href="mailto:helkos.sk@gmail.com" class="text-orange-400 font-bold hover:underline"><i class="fa-solid fa-envelope"></i> helkos.sk@gmail.com</a>
-    </div>
-</section>
-
-<script>
-    function selectPkg(pkgName) {
-        var input = document.getElementById('selectedBalicek');
-        if(input) input.value = pkgName;
-    }
-
-    function sendMailDirect(e) {
-        e.preventDefault();
-        
-        var nick = document.getElementById('userNick').value;
-        var balicek = document.getElementById('selectedBalicek').value;
-        var desc = document.getElementById('userDesc').value;
-
-        var email = "helkos.sk@gmail.com";
-        var subject = encodeURIComponent("👻 Nová halloweenska objednávka: " + balicek);
-        var body = encodeURIComponent("Kontakt (Discord/Roblox): " + nick + "\nVybraná služba: " + balicek + "\n\nPopis požiadavky:\n" + desc);
-
-        // Okamžite otvorí e-mailovú aplikáciu zákazníka s vyplnenými údajmi
-        window.location.href = "mailto:" + email + "?subject=" + subject + "&body=" + body;
-    }
-</script>
-        
-
-            <!-- OZNÁMENÍ O ÚSPĚŠNÉM ODOSLANÍ -->
-            <div id="successBox" class="hidden bg-emerald-950/90 border border-emerald-500 p-6 rounded-2xl text-center space-y-2 mb-6">
-                <i class="fa-solid fa-circle-check text-emerald-400 text-3xl"></i>
-                <h3 class="text-emerald-400 font-bold text-lg">Objednávka odoslaná!</h3>
-                <p class="text-slate-300 text-xs">Otvára sa tvoja e-mailová aplikácia na dokončenie odoslania pre helkos-STk.</p>
-            </div>
-
-            <!-- SAMOTNÝ FORMULÁR -->
-            <form onsubmit="submitForm(event)" class="bg-slate-900 border border-orange-950 p-8 rounded-2xl space-y-4 shadow-xl">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Tvoj Discord / Roblox Nick</label>
-                    <input type="text" id="userNick" required class="w-full bg-slate-950 border border-orange-950 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-orange-500 text-white" placeholder="napr. helkos#1234">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Zvolená služba / Robux suma</label>
-                    <input type="text" id="selectedBalicek" readonly class="w-full bg-slate-950 border border-orange-950 text-orange-400 font-bold rounded-xl px-4 py-3 text-sm focus:outline-none" value="10 R$ (Základné Úpravy)">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Detailný popis požiadavky</label>
-                    <textarea id="userDesc" rows="4" required class="w-full bg-slate-950 border border-orange-950 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-orange-500 text-white" placeholder="Napíš čo presne potrebuješ spraviť..."></textarea>
-                </div>
-
-                <!-- TLAČÍTKO PRO ODOSLÁNÍ -->
-                <button type="submit" class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg transition cursor-pointer flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-paper-plane"></i> Odoslať objednávku
-                </button>
-            </form>
-
-            <div class="mt-6 text-center text-xs text-slate-400 space-y-2">
-                <p>Prípadne napíš priamo na e-mail:</p>
-                <a href="mailto:helkos.sk@gmail.com" class="text-orange-400 font-bold hover:underline"><i class="fa-solid fa-envelope"></i> helkos.sk@gmail.com</a>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="border-t border-orange-900/40 bg-slate-950 py-6 text-center text-xs text-slate-500">
-        <p>&copy; 2026 <span class="text-orange-400 font-semibold">helkos-STk Development</span>. Všetky práva vyhradené.</p>
-    </footer>
-
-    <script>
-        function selectPkg(pkgName) {
-            var input = document.getElementById('selectedBalicek');
-            if(input) input.value = pkgName;
-        }
-
-        function submitForm(e) {
-            e.preventDefault();
-            
-            var nick = document.getElementById('userNick').value;
-            var balicek = document.getElementById('selectedBalicek').value;
-            var desc = document.getElementById('userDesc').value;
-
-            document.getElementById('successBox').classList.remove('hidden');
-
-            var mailToUrl = "mailto:helkos.sk@gmail.com?subject=" + encodeURIComponent("👻 Objednávka: " + balicek) + "&body=" + encodeURIComponent("Nick: " + nick + "\nBalíček: " + balicek + "\n\nPopis:\n" + desc);
-
-            setTimeout(function() {
-                window.location.href = mailToUrl;
-            }, 800);
-        }
-    </script>
-</body>
-                    </html>
-                    
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols
+                
