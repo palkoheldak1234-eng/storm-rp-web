@@ -190,11 +190,63 @@
         <div class="w-full h-px bg-gradient-to-r from-transparent via-orange-600/50 to-transparent"></div>
 
         <!-- 6. OBJEDNÁVKOVÝ FORMULÁR -->
-        <section id="kontakt" class="py-8 max-w-xl mx-auto scroll-mt-28">
-            <div class="text-center mb-6 space-y-2">
-                <h2 class="text-3xl font-extrabold text-orange-400">Halloweenská objednávka</h2>
-                <p class="text-slate-400 text-xs">Objednávka dorazí na e-mail <span class="text-orange-400 font-semibold">helkos.sk@gmail.com</span>.</p>
-            </div>
+<section id="kontakt" class="py-8 max-w-xl mx-auto scroll-mt-28">
+    <div class="text-center mb-6 space-y-2">
+        <h2 class="text-3xl font-extrabold text-orange-400">Halloweenská objednávka</h2>
+        <p class="text-slate-400 text-xs">Po kliknutí sa ti otvorí e-mail s predpísanou správou pre <span class="text-orange-400 font-semibold">helkos.sk@gmail.com</span>.</p>
+    </div>
+
+    <!-- FORMULÁR S PRIAMYM OTVORENÍM MAILU -->
+    <form onsubmit="sendMailDirect(event)" class="bg-slate-900 border border-orange-950 p-8 rounded-2xl space-y-4 shadow-xl">
+        <div>
+            <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Tvoj Discord / Roblox Nick</label>
+            <input type="text" id="userNick" required class="w-full bg-slate-950 border border-orange-950 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-orange-500 text-white" placeholder="napr. helkos#1234">
+        </div>
+
+        <div>
+            <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Zvolená služba / Robux suma</label>
+            <input type="text" id="selectedBalicek" readonly class="w-full bg-slate-950 border border-orange-950 text-orange-400 font-bold rounded-xl px-4 py-3 text-sm focus:outline-none" value="10 R$ (Základné Úpravy)">
+        </div>
+
+        <div>
+            <label class="block text-xs font-semibold text-slate-400 uppercase mb-2">Detailný popis požiadavky</label>
+            <textarea id="userDesc" rows="4" required class="w-full bg-slate-950 border border-orange-950 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-orange-500 text-white" placeholder="Napíš čo presne potrebuješ spraviť..."></textarea>
+        </div>
+
+        <!-- TLAČIDLO -->
+        <button type="submit" class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg transition cursor-pointer flex items-center justify-center gap-2">
+            <i class="fa-solid fa-paper-plane"></i> Odoslať objednávku cez e-mail
+        </button>
+    </form>
+
+    <div class="mt-6 text-center text-xs text-slate-400 space-y-2">
+        <p>Alebo mi napíš priamo:</p>
+        <a href="mailto:helkos.sk@gmail.com" class="text-orange-400 font-bold hover:underline"><i class="fa-solid fa-envelope"></i> helkos.sk@gmail.com</a>
+    </div>
+</section>
+
+<script>
+    function selectPkg(pkgName) {
+        var input = document.getElementById('selectedBalicek');
+        if(input) input.value = pkgName;
+    }
+
+    function sendMailDirect(e) {
+        e.preventDefault();
+        
+        var nick = document.getElementById('userNick').value;
+        var balicek = document.getElementById('selectedBalicek').value;
+        var desc = document.getElementById('userDesc').value;
+
+        var email = "helkos.sk@gmail.com";
+        var subject = encodeURIComponent("👻 Nová halloweenska objednávka: " + balicek);
+        var body = encodeURIComponent("Kontakt (Discord/Roblox): " + nick + "\nVybraná služba: " + balicek + "\n\nPopis požiadavky:\n" + desc);
+
+        // Okamžite otvorí e-mailovú aplikáciu zákazníka s vyplnenými údajmi
+        window.location.href = "mailto:" + email + "?subject=" + subject + "&body=" + body;
+    }
+</script>
+        
 
             <!-- OZNÁMENÍ O ÚSPĚŠNÉM ODOSLANÍ -->
             <div id="successBox" class="hidden bg-emerald-950/90 border border-emerald-500 p-6 rounded-2xl text-center space-y-2 mb-6">
